@@ -8,7 +8,9 @@ import Header from "../Home/header"
 import Header1 from "./../loggedUser/header"
 import Search from "./../Home/search"
 import NaviBar from "./NaviBar";
+import AvgRating from "./avgRating"
 import { Card, CardImg,CardBody,CardTitle, CardSubtitle, CardText } from "react-bootstrap";
+import ODetails from './ODetails'
 
 
 let id;
@@ -47,6 +49,8 @@ class Details extends React.Component {
                     <div><NaviBar id={this.state.id1}/></div><br/>
                    
                      <br></br>
+                     <ODetails id={this.state.id1}/>
+                    
                      <Menu id={this.state.id1}/>
                      <br>
                      </br>
