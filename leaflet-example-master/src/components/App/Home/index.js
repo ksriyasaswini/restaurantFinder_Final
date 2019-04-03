@@ -14,6 +14,7 @@ import {
     Switch,
     Redirect
 } from 'react-router-dom'
+import Filters from "./filter";
  
 
 class Home extends React.Component {
@@ -42,14 +43,20 @@ class Home extends React.Component {
                 <div style={{marginTop:'-200px'}} >
                 <Search/> </div>
                 <br></br>
-                
-                <div class="ml-auto" style={{position:'absolute',left:'250px',marginTop:'200px'}}>
+               <div class="container">
+               <div class="row">
+                <div style={{width:"30%",position:'absolute',marginTop:'200px'}}>
+                <Filters/>
+                </div >
+                <div class="ml-auto" style={{position:'absolute',left:'300px',marginTop:'200px'}}>
                 
                 <label>Near Me</label>
 
                 <CardColumns >
                     <Cards/> 
                 </CardColumns>
+                </div>
+                </div>
                 </div>
             </div>
             

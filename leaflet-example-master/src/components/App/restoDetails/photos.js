@@ -1,9 +1,13 @@
 import React from "react"
 import image1 from "../image/image1.jpeg"
 import image2 from "../image/image2.jpeg"
-import {Image, Card} from "react-bootstrap"
-import {Modal, Button,FormGroup, Col, FormLabel, FormControl, ModalBody} from "react-bootstrap"
 
+import { Card, CardImg, CardText, CardBody,
+    CardTitle, CardSubtitle, CardColumns } from 'reactstrap';
+import {Modal, Button,FormGroup, Col, FormLabel, FormControl, ModalBody} from "react-bootstrap"
+let i=0;
+var imageUrls=[];
+var menuUrls=[];
 class Photo extends React.Component {
     constructor(props) {
         super(props);
@@ -61,12 +65,23 @@ class Photo extends React.Component {
             <label>Photos</label>
             <div> {this.state.data.map((RestaurantDetails,index) =>{
                 return(
-                    <div>
-                         
-                            <Image src={RestaurantDetails.imageUrls[0]} style={{height:'200px',marginLeft: '80px',marginTop:'30px',width:'300px'}}  onClick={this.handleShow} responsive/>
-                         
+                   imageUrls=RestaurantDetails.imageUrls,
+                   <CardColumns>
+                   <div> {imageUrls.map((images,index)=>
+        <Card width="100%">              
+               <CardImg top width="100%" src={images} alt="Card image cap" height="200px"/> 
+                   </Card>                       
+                   
+                   
+                )}
+
             </div>
-            )})}
+            </CardColumns>
+                )     
+            })}
+            {console.log(imageUrls)}
+            {console.log(menuUrls)}
+            
                 </div>
             <br></br>
             </Card>

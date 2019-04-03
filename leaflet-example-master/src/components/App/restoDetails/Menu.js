@@ -6,7 +6,7 @@ import index from "./index"
 import menu1 from "../image/menu1.jpg"
 import {Carousel} from "react-bootstrap"
 
-
+var menuUrls=[];
 class Menu extends React.Component {
     constructor(props) {
         super(props);
@@ -53,46 +53,29 @@ class Menu extends React.Component {
             <label>Menu</label>
             <center>
             <div> {this.state.data.map((RestaurantDetails,index) =>{
+                
                 return(
-                         <div>
+                    menuUrls=RestaurantDetails.menuUrls,
+                    <div> <Carousel style = {{width:'30%'}} interval = '100000'>
+                    {menuUrls.map((images,index)=>
                
-            <Carousel style = {{width:'30%'}} interval = '100000'>
-                <Carousel.Item>
-                    <img
-                    className="d-block w-100"
-                    src={RestaurantDetails.menuUrls[0]}
-                    alt="First slide"
-                    />
-                    {/* <Carousel.Caption>
-                        <h3>First slide label</h3>
-                    </Carousel.Caption>
-                </Carousel.Item>
-                <Carousel.Item>
-                    <img
-                    className="d-block w-100"
-                    src={menu1}
-                    alt="Third slide"
-                    />
-
-                    <Carousel.Caption>
-                        <h3>Second slide label</h3>
-                    </Carousel.Caption>
-                </Carousel.Item>
-                <Carousel.Item>
-                    <img
-                    className="d-block w-100"
-                    src={menu1}
-                    alt="Third slide"
-                    />
-
-                    <Carousel.Caption>
-                        <h3>Third slide label</h3>
-                    </Carousel.Caption> */}
-                </Carousel.Item>
-            </Carousel>
-            </div>
-            )})}
+                       
+                            <Carousel.Item>
+                                <img
+                                className="d-block w-100"
+                                src={images}
+                                alt="First slide"
+                                />
+                                
+                            </Carousel.Item>)}
+                        </Carousel>
+                        </div>
+                         
+            )
+            })}
                 </div>
+               
+                
             </center>
             <br></br>
             </Card>

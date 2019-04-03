@@ -8,15 +8,18 @@ import Header from './header';
 
 export default class MapRender extends React.Component {
 state = {
-    markers: [],
+    marker: {
+      latitude:0,
+      longitude:0
+    },
   };
 
   setMarker = ({latitude, longitude}) => {
     this.setState({
-      markers: [...this.state.markers, {
+      marker: {
         latitude,
         longitude 
-      }]
+      },
     })
   }
 
@@ -25,7 +28,7 @@ state = {
     return (
       <div  style={{textAlign: "left"}}>
       
-        <LeafletMap markers={this.state.markers} setMarker={this.setMarker} />
+        <LeafletMap marker={this.state.marker} setMarker={this.setMarker} />
       </div>
     );
   }

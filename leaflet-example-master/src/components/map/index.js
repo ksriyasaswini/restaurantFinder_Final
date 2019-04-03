@@ -22,6 +22,8 @@ class LeafletMap extends Component {
     this.handleLatChange = this.handleLatChange.bind(this);
     this.handleLongChange = this.handleLongChange.bind(this);
     
+    this.sendval = this.sendval.bind(this);
+    
   this.state = {
     lati:"",
     longi:"",
@@ -35,6 +37,7 @@ class LeafletMap extends Component {
     this.setState({
       latiVal: event.target.value
     });
+    
   }
   handleLongChange = event => {
     this.setState({
@@ -43,7 +46,9 @@ class LeafletMap extends Component {
   }
    
   
-  
+  sendval() {
+    this.props.sendData(this.state.lati);
+  }
   handleClick = (e) => {
     this.props.setMarker({
       latitude: e.latlng.lat,
@@ -97,16 +102,16 @@ class LeafletMap extends Component {
           attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
         />
         {
-          this.props.markers.map((m) => (
-            <Marker position={[parseFloat(m.latitude), parseFloat(m.longitude)]}>
-              <Popup>latitude:{m.latitude}<br />longitude:{m.longitude}</Popup>
+          
+            <Marker position={[parseFloat(this.props.marker.latitude), parseFloat(this.props.marker.longitude)]}>
+              <Popup>latitude:{this.props.marker.latitude}<br />longitude:{this.props.marker.longitude}</Popup>
             </Marker>
-          ))
+          
         }
       </Map>
       </Form>        
 
-      <Button type="submit" >Submit</Button>
+      <Button onClick = {this.sendval}>Submit</Button>
       </div>
       </Form>
 
