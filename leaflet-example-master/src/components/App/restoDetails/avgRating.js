@@ -17,8 +17,9 @@ export default class AvgRating extends React.Component {
       }
 
       componentDidMount() {
-    //    const url = "10.10.200.10:9000/avg?rid="+this.props.id; 
-       const url = "http://localhost:9000/avg?rid="+4;
+          console.log("rating",this.props.id)
+        const url = "http://10.10.200.10:9000/avg?rid="+this.props.id; 
+    //   const url = "http://localhost:9000/avg?rid="+this.;
         let headers = new Headers();
 
         headers.append('Content-Type', 'application/json');
@@ -51,8 +52,8 @@ export default class AvgRating extends React.Component {
             <div style={{float:"right"}}>
                
                 {this.state.avg<3? 
-                    <h2><Badge color="warning"> {this.state.avg}</Badge></h2>:
-                    <h2><Badge color="success">{this.state.avg}</Badge></h2>
+                    <h2><Badge color="warning"> {this.state.avg}/5</Badge></h2>:
+                    <h2><Badge color="success">{this.state.avg}/5</Badge></h2>
                 }
          
             </div>

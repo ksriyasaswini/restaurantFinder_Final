@@ -5,6 +5,7 @@ import Header from "./../Home/header"
 import Search from "./../Home/search"
 import NaviBar from "./NaviBar";
 import Rating from "./rating";
+import Header1 from "./../loggedUser/header"
 import Review from "./reviews";
 import { Button } from "react-bootstrap";
 
@@ -22,9 +23,12 @@ class ReviewFinal extends React.Component {
 
     render() {
         return (
-            <div>
+            
                 
-                <Header/>
+                <div>
+                     {  
+                     (localStorage.getItem("AccessToken")?(<Header1/>):(<Header/>))      
+                    }
                 <div style={{position:'relative'}}>
                 <Bread/>
                 <Search/> 

@@ -3,6 +3,7 @@ import Photo from "./photos";
 import Menu from "./Menu";
 import Review from "./reviews";
 import Rating from "./rating";
+import Header1 from "./../loggedUser/header"
 import Bread from "./breadCrumbs"
 import Header from "./../Home/header"
 import Search from "./../Home/search"
@@ -26,7 +27,10 @@ class MenuFinal extends React.Component {
            
             <div>
               console.log(this.state.id1)
-                <Header/>
+              
+                     {  
+                     (localStorage.getItem("AccessToken")?(<Header1/>):(<Header/>))      
+                    }
                 <div style={{position:'relative'}}>
                 <Bread/>
                 <Search/> 

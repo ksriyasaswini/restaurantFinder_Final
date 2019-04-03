@@ -34,7 +34,7 @@ class LogHeader extends React.Component {
    this.props.history.push(path)
   }
   handleResataurant() {
-    let path=`addRes`
+    let path=`addRestaurant1`
    this.props.history.push(path)
   }
 

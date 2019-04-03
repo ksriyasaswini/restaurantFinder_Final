@@ -2,6 +2,7 @@ import React from "react";
 import Photo from "./photos";
 import Bread from "./breadCrumbs"
 import Header from "./../Home/header"
+import Header1 from "./../loggedUser/header"
 import Search from "./../Home/search";
 import NaviBar from "./NaviBar";
 
@@ -20,8 +21,9 @@ class PhotoFinal extends React.Component {
     render() {
         return (
             <div>
-                
-                <Header/>
+            {  
+            (localStorage.getItem("AccessToken")?(<Header1/>):(<Header/>))      
+           }
                 <div style={{position:'relative'}}>
                 <Bread/>
                 <Search/> 

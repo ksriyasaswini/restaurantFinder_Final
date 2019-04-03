@@ -5,16 +5,28 @@ import Header from "./../Home/header";
 import LoggedHeader from "./../loggedUser/header"
 import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
 
+var body;
 export default class addRestaurants extends React.Component {
 
     constructor(props) {
         super(props);
-        // this.state = {
-        //   modal: false
-        // };
-    
-        // this.toggle = this.toggle.bind(this);
+        this.setState ={
+        form: {
+            name:'',
+            city:'',
+            phoneNumber: '',
+            address:'',
+            cost:0,
+            cuisines: {},
+            featured: [],
+            type: '',
+            imageUrls:[],
+            menuUrls:[],
+        }
+    }
+        this.ImageChange = this.ImageChange.bind(this);
       }
+      
     
     //   toggle() {
     //     this.setState(prevState => ({
@@ -22,6 +34,71 @@ export default class addRestaurants extends React.Component {
     //     }));
     //   }
 
+    
+
+    ImageChange(e) {
+        // e.preventDefault();
+        console.log('.......'+this.state.form.imageUrls)
+        body = {
+         imageUrls:this.state.form.imageUrls,
+        }
+        console.log(body);
+         console.log('handle uploading-', this.state.file);
+         const url = "http://10.10.200.10:9000/images"; 
+         const formdata=new FormData()
+           formdata.append("file",this.state.file);
+           
+         let headers = new Headers();
+     
+             formdata.append("file",this.state.file);
+     
+             headers.append('Content-Type', 'multipart/form-data');
+             headers.append('Accept', 'application/json');
+         
+             headers.append('Access-Control-Allow-Origin', url);
+             headers.append('Access-Control-Allow-Credentials', 'true');
+         
+             headers.append('GET', 'POST');
+             
+             e.preventDefault();
+             
+             fetch(url, {
+               headers: headers,
+               method: 'POST',
+               withCredentials:true,
+               credentials:'include',
+               headers:{
+                 'Access-Control-Allow-Origin': url
+               },
+               body: formdata
+             })               
+             .then(r=> {r.json()
+               .then(response=>{console.log(response)
+                  this.setState ({
+                    result: JSON.stringify(response.image_url)
+                  })
+                  console.log("result image:"+this.state.result.replace('\"','',))
+                  this.setState ({
+                    result: this.state.result.replace('\"','',)
+                  })
+                  console.log("result image:"+this.state.result.replace('\"','',))
+                  this.setState ({
+                    result: this.state.result.replace('\"','',)
+                  })
+                  if(r.status==200){
+                    console.log("success")
+                    this.setState(
+                      {
+                        img:this.state.img.concat(this.state.result)
+                      })
+                      console.log("img in state appending "+this.state.img)
+                  }
+                 
+               })
+              })
+            .catch(() => console.log("Can’t access " + url + " response. "))
+           
+        }
       
   render() {
     return (
@@ -86,7 +163,7 @@ export default class addRestaurants extends React.Component {
                     Upload images of the restaurant 
                     </FormText>
                 </Col>
-                <Button>Upload</Button>
+                <Button onClick={this.ImageChange}>Upload</Button>
             </FormGroup>           
             
         {/* </ModalBody>

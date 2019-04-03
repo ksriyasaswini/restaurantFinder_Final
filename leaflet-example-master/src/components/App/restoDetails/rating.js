@@ -1,9 +1,12 @@
 import React from "react"
 
 import styles from './rating.css'
-import { Button, Card, CardText, CardBody } from "react-bootstrap";
+import { Card, CardText, CardBody } from "reactstrap";
+import {Button} from "react-bootstrap"
+import Review from "./reviews";
 
 var body;
+var user=[];
 export default class rating extends React.Component {
 
     constructor(props){
@@ -14,6 +17,7 @@ export default class rating extends React.Component {
         this.state = {
           data : [],
           id:"",
+          user:[]
         }
       }
 
@@ -123,15 +127,21 @@ export default class rating extends React.Component {
         </textarea>
         <br/>
         <Button onClick={this.handleChanges}> Submit</Button>
-        </div>
-        <label>Reviews</label>
+        </div><br/>
+        <label style={{fontSize:'20px'}}><b>Reviews</b></label>
        <> {this.state.data.map((ReviewsDetails,index) =>{
                console.log(ReviewsDetails)
+               user=ReviewsDetails.user;
+               
                return(
                        <Card>
-                            
-                                   <>{ReviewsDetails.review}</>
-  
+                            <CardBody>
+                                 <div>
+                                   {/* <CardText>{userd.username}</CardText>  */}
+                                   <CardText>{ReviewsDetails.review}</CardText>
+                                   </div>
+                         
+                             </CardBody>
                         </Card>
                )
        })}

@@ -95,7 +95,7 @@ class ODetails extends React.Component{
                     </Col>
               
                     <Col>
-                        <AvgRating id={this.state.id} />
+                        <AvgRating id={this.props.id} />
                     </Col>
                 </Row><br/>
                 

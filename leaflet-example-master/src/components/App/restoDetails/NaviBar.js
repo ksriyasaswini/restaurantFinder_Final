@@ -1,6 +1,7 @@
 import React from 'react';
 import {withRouter} from 'react-router-dom';
 import Bookmark from './bookmark';
+import {Card} from "reactstrap";
 
 class NaviBar extends React.Component{
   constructor(props) {
@@ -9,8 +10,40 @@ class NaviBar extends React.Component{
     this.handleMenu = this.handleMenu.bind(this)
     this.handlePhotos = this.handlePhotos.bind(this)
     this.handleReview = this.handleReview.bind(this)
+    this.state ={
+       data :[]
+    }
    
   }
+
+  componentDidMount() {
+   //const url = "http://10.10.200.12:9000/foods"; 
+   const url = "http://10.10.200.10:9000/restaurants/id?id="+this.props.id; 
+   let headers = new Headers();
+   console.log(url)
+   
+   headers.append('Content-Type', 'application/json');
+   headers.append('Accept', 'application/json');
+   
+   headers.append('Access-Control-Allow-Origin', url);
+   headers.append('Access-Control-Allow-Credentials', 'true');
+   
+   headers.append('GET', 'POST');
+   
+   fetch(url, {
+   headers: headers,
+   method: 'GET'
+   })
+   .then(response => response.json())
+   .then(contents => {console.log("in fetch: "+ contents);
+   this.setState ({
+   data : contents,
+   }
+   )
+   })
+   .catch(() => console.log("Can’t access " + url + " response. "))
+   
+   }
  
   handleOverview() {
     console.log(this.props.id)
@@ -87,6 +120,23 @@ class NaviBar extends React.Component{
    
 
   return (
+     <>
+
+   <div >
+         <div>{this.state.data.map((RestaurantDetails,index) =>{
+               return (
+               <div>
+                  <Card>
+                  <center><h3>{RestaurantDetails.name}</h3></center>
+                  </Card>
+               </div>
+         
+
+               )
+               })
+               }
+         </div>
+</div>
    
 <div >
 
@@ -98,6 +148,7 @@ class NaviBar extends React.Component{
     <li style={li}><a onClick={this.handlefav} style={a}><Bookmark id={this.props.id}/></a></li>
     </ul>   
     </div>
+    </>
 )
 }
 }
