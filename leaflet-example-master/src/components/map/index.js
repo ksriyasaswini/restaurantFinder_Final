@@ -25,10 +25,10 @@ class LeafletMap extends Component {
     this.sendval = this.sendval.bind(this);
     
   this.state = {
-    lati:"",
-    longi:"",
-    latiVal:"",
-    longiVal:"",
+    lati:0.0,
+    longi:0.0,
+    latiVal:0.0,
+    longiVal:0.0,
    
   };
 };
@@ -60,6 +60,8 @@ class LeafletMap extends Component {
       longi:e.latlng.lng,
   
     });
+    localStorage.setItem("latitude",this.state.lati);
+    localStorage.setItem("longitude",this.state.longi);
     console.log("lattitude:"+ this.state.lati)
     console.log("longitude:"+ this.state.longi)
   };
@@ -111,7 +113,6 @@ class LeafletMap extends Component {
       </Map>
       </Form>        
 
-      <Button onClick = {this.sendval}>Submit</Button>
       </div>
       </Form>
 

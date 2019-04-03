@@ -1,6 +1,18 @@
 import React from 'react';
 import {Card,Button,Badge,CardBody,CardText, Col,Row} from 'reactstrap'
 import AvgRating from './avgRating';
+import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
+import L from 'leaflet';
+
+delete L.Icon.Default.prototype._getIconUrl;
+
+L.Icon.Default.mergeOptions({
+    iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
+    iconUrl: require('leaflet/dist/images/marker-icon.png'),
+    shadowUrl: require('leaflet/dist/images/marker-shadow.png')
+});
+const position = [17.440081, 78.348915];
+
 
 
 class ODetails extends React.Component{
@@ -11,13 +23,29 @@ class ODetails extends React.Component{
           data : [],
           id:""
         }
+        this.direction = this.direction.bind(this);
        
       }
-    
 
+    direction() {
+
+        console.log("in direction")
+        let url="https://www.google.co.in/maps/dir//"+localStorage.getItem("Rlatitude")+","+localStorage.getItem("Rlongitude");
+        console.log(url);        
+        window.open(url);
+    }
+
+    setMarker = ({ latitude, longitude }) => {
+        this.setState({
+            markers: [...this.state.markers, {
+                latitude,
+                longitude
+            }]
+        })
+    }
       componentDidMount() {
         //const url = "http://10.10.200.12:9000/foods"; 
-        const url = "http://10.10.200.10:9000/restaurants"; 
+        const url = "http://10.10.200.10:9000/restaurants/id?id="+this.props.id; 
         let headers = new Headers();
 
         headers.append('Content-Type', 'application/json');
@@ -35,7 +63,10 @@ class ODetails extends React.Component{
         .then(response => response.json())
         .then(contents => {console.log("in fetch: "+ contents);
                             this.setState ({
-                            data : contents}
+                            data : contents,
+                            // latitude: contents.latitude,
+                            // longitude: contents.longitude
+                             }
                             )
                             
             })
@@ -49,8 +80,9 @@ class ODetails extends React.Component{
   return (
 
       <div>{this.state.data.map((RestaurantDetails,index) =>{
-        {//localStorage.setItem("Rlatitude",RestaurantDetails.latitude)
-        localStorage.removeItem("latitude")
+        {
+            localStorage.setItem("Rlatitude",RestaurantDetails.latitude)
+            localStorage.setItem("Rlongitude",RestaurantDetails.longitude)
     }
 
         return(
@@ -81,13 +113,45 @@ class ODetails extends React.Component{
 
                 <Row>
                     <Col><h4><Badge color="light">Working hours:&nbsp;</Badge></h4>{RestaurantDetails.workinghrs}</Col>
-                    <Col><h4><Badge color="light">Map:&nbsp;</Badge></h4></Col>
                     
-                </Row>
+                    
+                </Row><br/>
 
                 <Row>
-                    <Col></Col>
-                    <Col><Button>Get directions</Button></Col>
+               
+                    <Col><h4><Badge color="light">Map:&nbsp;</Badge></h4>
+                     <Button onClick={this.direction}>Get Directions</Button> </Col>
+                </Row>
+                
+                <Row>
+                    <Col>
+                <Map
+                                                ref={this.mapRef}
+                                                center={position}
+                                                zoom={10}
+                                                style={{ height: '350px', width: '100%' }}
+                                            >
+
+                                                <TileLayer
+                                                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                                                    attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
+                                                />
+
+
+
+                                                <Marker position={[RestaurantDetails.latitude, RestaurantDetails.longitude]}>
+                                                <Popup minWidth={"200"} closeButton={true} minHeight={10}>
+                                 
+                                                    <div>
+                                                    <b>{this.state.name}</b><br></br>
+                                                
+                                                    {this.state.location}
+                                                    
+                                                    </div>
+                                                </Popup>
+                                                </Marker>
+                                            </Map>
+                                            </Col>
                 </Row>
             </CardBody>
         </Card>

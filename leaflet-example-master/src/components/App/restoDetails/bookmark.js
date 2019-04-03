@@ -19,6 +19,32 @@ export default class bookmark extends React.Component {
         
         }
       }
+      componentDidMount() {
+        const url = "http://10.10.200.10:9000/profile?Token="+localStorage.getItem("AccessToken"); 
+        let headers = new Headers();
+
+        headers.append('Content-Type', 'application/json');
+        headers.append('Accept', 'application/json');
+
+        headers.append('Access-Control-Allow-Origin', url);
+        headers.append('Access-Control-Allow-Credentials', 'true');
+
+        headers.append('GET', 'POST');
+
+        fetch(url, {
+            headers: headers,
+            method: 'GET'
+        })
+        .then(response => response.json())
+        .then(contents => {console.log("in fetch: "+ contents);
+                            this.setState ({
+                            data : contents}
+                            )
+                            
+            })
+           
+        .catch(() => console.log("Can’t access " + url + " response. "))
+      }
 
       addFav(x) {
         console.log(this.props.id)
@@ -62,7 +88,7 @@ export default class bookmark extends React.Component {
            alert("Please Login to Remove Bookmark")}
         else {
 
-              const url = "http://10.10.200.10:9000/favourite?id="+this.props.id; 
+              const url = "http://10.10.200.10:9000/favourite?id="+this.props.id+ "&AccessToken="+localStorage.getItem("AccessToken"); 
                 let headers = new Headers();
       
                 headers.append('Content-Type', 'application/json');
@@ -108,13 +134,17 @@ export default class bookmark extends React.Component {
         return(
             <div onMouseOver={this.onMouseEnterHandler}
             onMouseLeave={this.onMouseLeaveHandler} >
-            {  
-                     (!this.state.visibility)?( <MdOut fontSize="30px"  onClick={this.addFav} color={this.state.color} />):( <MdHeart fontSize="30px" color={this.state.color} onClick={this.removeFav}/> )     
-            }
+             
+            
+            
+                
+              {  
+                      (!this.state.visibility)?( <MdOut fontSize="30px"  onClick={this.addFav} color={this.state.color} />):( <MdHeart fontSize="30px" color={this.state.color} onClick={this.removeFav}/> )     
+             }
           
            
             
-             
+
             </div>
         )
 
