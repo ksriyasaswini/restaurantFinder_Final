@@ -53,7 +53,7 @@ class SearchDetails extends React.Component {
     }
 
       requestData(name) {
-        const url = "http://localhost:9000/restaurants/search?name="+name;
+        const url = "http://10.10.200.10:9000/restaurants/search?name="+name;
         console.log(url) 
         let headers = new Headers();
 
