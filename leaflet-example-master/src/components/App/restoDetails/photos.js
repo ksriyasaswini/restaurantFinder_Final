@@ -68,13 +68,11 @@ class Photo extends React.Component {
                    imageUrls=RestaurantDetails.imageUrls,
                    <CardColumns>
                    <div> {imageUrls.map((images,index)=>
-        <Card width="100%">              
-               <CardImg top width="100%" src={images} alt="Card image cap" height="200px"/> 
+                 <Card>              
+                        <CardImg style={{width:'200px'}} top width="100%" src={images} alt="Card image cap" height="300px"/> 
                    </Card>                       
                    
-                   
                 )}
-
             </div>
             </CardColumns>
                 )     

@@ -11,6 +11,7 @@ import Filters from "./../Home/filter"
 
 let name;
 let id;
+var url
 class SearchDetails extends React.Component {
 
     constructor(props){
@@ -54,7 +55,10 @@ class SearchDetails extends React.Component {
     }
 
       requestData(name) {
-        const url = "http://10.10.200.10:9000/restaurants/search?name="+name;
+          if(name == undefined)
+          url="http://10.10.200.10:9000/restaurants"
+         else 
+          url = "http://10.10.200.10:9000/restaurants/search?name="+name;
         console.log(url) 
         let headers = new Headers();
 
