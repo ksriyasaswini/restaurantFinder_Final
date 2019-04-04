@@ -207,7 +207,7 @@ class addRestaurant1 extends React.Component {
  reader.onloadend = () => {
  this.setState({
  file: file,
- menuPreviewUrl: reader.result
+ imagePreviewUrl1: reader.result
  });
  }
  
@@ -307,7 +307,9 @@ class addRestaurant1 extends React.Component {
  cost:this.state.fields.cost,
  type:this.state.fields.type,
  imageUrls:this.state.form.imageUrls,
- menuUrls:this.state.form.menuUrls
+ menuUrls:this.state.form.menuUrls,
+ latitude:localStorage.getItem("latitude"),
+ longitude:localStorage.getItem("longitude")
  }
  
  console.log(body);
@@ -354,7 +356,7 @@ class addRestaurant1 extends React.Component {
  formIsValid = false;
  errors["phoneNumber"] = "*Please enter the phoneNumber.";
  }
- if (!fields["cuisines"]) {
+ if (cus == null) {
     formIsValid = false;
     errors["cuisines"] = "*Please select the cuisine(s).";
     }
@@ -362,7 +364,7 @@ class addRestaurant1 extends React.Component {
     formIsValid = false;
     errors["cost"] = "*Please enter the cost.";
     }
-if (!fields["featured"]) {
+if (fea==null) {
     formIsValid = false;
     errors["featured"] = "*Please enter the feature(s).";
     }
@@ -384,6 +386,14 @@ if (!fields["type"]) {
  $imagePreview = (<img style={{width:"20%",height:"20%"}} src={imagePreviewUrl} />);
  } else {
  $imagePreview = (<div className="previewText">Please select an Image for Preview</div>);
+ }
+
+ let {imagePreviewUrl1} = this.state;
+ let $imagePreview1 = null;
+ if (imagePreviewUrl1) {
+ $imagePreview1 = (<img style={{width:"20%",height:"20%"}} src={imagePreviewUrl1} />);
+ } else {
+ $imagePreview1 = (<div className="previewText">Please select an Image for Preview</div>);
  }
 const { form} = this.state;
  return (
@@ -501,8 +511,8 @@ const { form} = this.state;
                 <div class="md-form">
                     <label for="inputIconEx5">Upload Menu:</label>
                     <input className="fileInput" type="file" name="menuUrls" onChange={(e)=>this._handleMenuImageChange(e)} /><br></br>
-                    <div className="imgPreview" ><br></br>
-                    {$imagePreview }
+                    <div className="imgPreview1" ><br></br>
+                    {$imagePreview1 }
                     </div><br></br>
                     <button className="submitButton" type="submit" onClick={(e)=>this._handleMenuSubmit(e)}>Upload Menu</button><br></br>
                 </div>

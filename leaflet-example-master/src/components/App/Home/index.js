@@ -16,6 +16,7 @@ import {
 } from 'react-router-dom'
 import Filters from "./filter";
 import { Container, Row, Col } from "reactstrap";
+import { CardGroup } from "reactstrap";
  
 
 class Home extends React.Component {
@@ -44,21 +45,35 @@ class Home extends React.Component {
                 <div style={{marginTop:'-200px'}} >
                 <Search/> </div>
                 <br></br>
-               <Container style={{marginTop:'200px'}}>
+                {/* <Row style={{marginTop:'200px'}}>
+                        <div class="col-md-3"  >
+                              <Filters/>
+                        
+                        </div>
+                        <div class="col-md-9">
+                                <label>Near Me</label>
+
+                                <CardColumns >
+                                    <Cards/> 
+                                </CardColumns>
+                        </div>
+                </Row> */}
+             <div style={{marginTop:"200px"}}>
                 <Row style={{width:'100%'}}>
-                        <Col >
+                        <Col xs="auto">
                         <Filters/>
                         </Col >
-                        <Col >
+                        <Col xs="auto" sm = "12" md={{ size:'9'}}>
                         
                         <label>Near Me</label>
 
-                        <CardColumns >
+                       
                             <Cards/> 
-                        </CardColumns>
+                       
+                      
                         </Col>
                     </Row>
-                </Container>
+                    </div>
             </div>
             
         );

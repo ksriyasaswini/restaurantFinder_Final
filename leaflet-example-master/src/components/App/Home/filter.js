@@ -1,23 +1,24 @@
 import React from 'react';
 import {Form, FormGroup, Label, Input,Button} from 'reactstrap'
 import Range from './Range';
+import {withRouter} from 'react-router-dom';
 
 let i=0;
 var body;
-
-export default class filters extends React.Component {
+var cus=[];
+ class filters extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
+            data:[],
            type: "",
-           rangeVal: 0,
+           rangeVal:0,
            Cuisines:[],
            sort:"",
            open:""
 
         }
         this.handleTypeChange = this.handleTypeChange.bind(this);
-     
         this.handleTimeChange = this.handleTimeChange.bind(this);
         this.handlecuisineChange = this.handlecuisineChange.bind(this);
         this.handlesortChange = this.handlesortChange.bind(this);
@@ -29,39 +30,18 @@ export default class filters extends React.Component {
     body={
         type: this.state.type,
         cost:this.state.rangeVal,
-        cuisines:this.state.Cuisines,
+        cuisines:cus,
         sort:this.state.sort,
         open:this.state.open
         }
         console.log(body)
-        const url = "http://localhost:9000/restaurants/filters "; 
-        console.log(url)
-          let headers = new Headers();
-
-          headers.append('Content-Type', 'application/json');
-          headers.append('Accept', 'application/json');
-
-          headers.append('Access-Control-Allow-Origin', url);
-          headers.append('Access-Control-Allow-Credentials', 'true');
-
-          headers.append('PUT', 'POST');
-
-          fetch(url, {
-              headers: headers,
-              method: 'PUT',
-              body:JSON.stringify(body)
-          })
-          .then(response => response.json())
-          .then(contents => {console.log("in fetch: "+ contents);
-                              this.setState ({
-                              data : contents}
-                              )
-                              
-              })
-             
-          .catch(() => console.log("Can’t access " + url + " response. "))
-
-        console.log(this.state.body)
+        let path=`Filters`;
+         this.props.history.push({
+            pathname: path,
+            state: {
+             body:body
+            }
+           });
       }
       updateRange(val) {
         this.setState({
@@ -80,9 +60,12 @@ export default class filters extends React.Component {
      }
 
      handlecuisineChange(e) {
-        this.state.Cuisines[e.target.value]= !this.state.Cuisines[e.target.value];
-        console.log("cuisines:"+e.target.value+"="+this.state.Cuisines[e.target.value])
-        
+        console.log("change")
+  
+        cus[i++]=(e.target.value)
+        console.log(cus)
+        // this.state.Cuisines[e.target.value]= !this.state.Cuisines[e.target.value];
+        // console.log("cuisines:"+e.target.value+"="+this.state.Cuisines[e.target.value])
      }
 
      handlesortChange(e) {
@@ -199,3 +182,5 @@ export default class filters extends React.Component {
         );
     }
 }
+
+export default withRouter(filters);

@@ -137,7 +137,7 @@ export default class rating extends React.Component {
                        <Card>
                             <CardBody>
                                  <div>
-                                   {/* <CardText>{userd.username}</CardText>  */}
+                                    {/* <CardText>{user.username}</CardText>   */}
                                    <CardText>{ReviewsDetails.review}</CardText>
                                    </div>
                          

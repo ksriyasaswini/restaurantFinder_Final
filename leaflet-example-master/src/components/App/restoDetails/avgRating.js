@@ -52,8 +52,8 @@ export default class AvgRating extends React.Component {
             <div style={{float:"right"}}>
                
                 {this.state.avg<3? 
-                    <h2><Badge color="warning"> {this.state.avg}/5</Badge></h2>:
-                    <h2><Badge color="success">{this.state.avg}/5</Badge></h2>
+                    <h2><Badge color="warning"> {this.state.avg}</Badge></h2>:
+                    <h2><Badge color="success">{this.state.avg}</Badge></h2>
                 }
          
             </div>

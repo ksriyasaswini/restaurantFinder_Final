@@ -32,6 +32,7 @@ import addRestaurant1 from "./components/App/profilePage/addrestaurant1";
 import MenuFinal from "./components/App/restoDetails/menuFinal";
  
 import MapRender from './components/mapRender';
+import filterDisplay from './components/App/Home/filterDisplay';
 class App extends PureComponent {
  
   render() {
@@ -43,7 +44,7 @@ class App extends PureComponent {
             <Route path ="/login" component ={Login}/>
             <Route path ="/Signup" component ={Signup}/>
             <Route path="/Search" component = {SearchDetails}/>
-          
+            
             <Route path ="/Menu" component ={MenuFinal}/>
         
             <Route path="/Photo" component={PhotoFinal}/>
@@ -55,6 +56,7 @@ class App extends PureComponent {
             <Route exact path="/addRestaurant1" component={addRestaurant1} />
             <Route exact path="/ProfilePage" component={ProfilePage}/>
             <Route exact path="/Maps" component={MapRender}/>
+            <Route exact path="/Filters" component={filterDisplay}/>
             <Redirect to ="/home"/>
         </Switch>
     </Router> 

@@ -5,8 +5,9 @@ import Header from "./../Home/header"
 import LoggedHeader from "./../loggedUser/header"
 import Search from "./../Home/search"
 import { Card, CardImg, CardText, CardBody,
-    CardTitle, CardSubtitle, Button } from 'reactstrap';
+    CardTitle, CardSubtitle, Button,Row,Col } from 'reactstrap';
 import {CardColumns} from "reactstrap";
+import Filters from "./../Home/filter"
 
 let name;
 let id;
@@ -91,8 +92,15 @@ class SearchDetails extends React.Component {
                 
                 <Search /> 
                 <br></br>
-                <label>Search Results:</label>
                 <br></br>
+
+                <div style={{marginTop:"30px"}}>
+                <Row style={{width:'100%'}}>
+                        <Col xs="auto">
+                        <Filters/>
+                        </Col >
+                        <Col xs="auto" sm = "12" md={{ size:'9'}}>
+ 
                 <CardColumns>
                 <div>{this.state.data.map((RestaurantDetails,index) =>{
                     //let url="http://localhost:9000/images?id="+RestaurantDetails.urls[0];
@@ -116,6 +124,9 @@ class SearchDetails extends React.Component {
                 })}
                 </div>
                 </CardColumns>
+                </Col>
+                </Row>
+                </div>
                 <br></br>
                 </div>
                 

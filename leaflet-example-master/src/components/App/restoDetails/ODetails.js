@@ -100,7 +100,7 @@ class ODetails extends React.Component{
                 </Row><br/>
                 
                 <Row>
-                    <Col><h4><Badge color="light">Cuisines:&nbsp;</Badge></h4>{RestaurantDetails.cuisines[0]}</Col>
+                    <Col><h4><Badge color="light">Cuisines:&nbsp;</Badge></h4>{RestaurantDetails.cuisines}</Col>
                     <Col><h4><Badge color="light">Cost:&nbsp;</Badge></h4>{RestaurantDetails.cost}</Col>
                     
                 </Row><br/>
