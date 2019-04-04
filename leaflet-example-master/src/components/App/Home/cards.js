@@ -1,8 +1,13 @@
  import React from "react"
 import { Card, CardImg, CardText, CardBody,
-    CardTitle, CardSubtitle, Button, CardColumns,Row,Col  } from 'reactstrap';
+    CardTitle, CardSubtitle, Button, CardColumns,Row,Col,Spinner,Badge} from 'reactstrap';
 import {withRouter} from 'react-router-dom';
 import AvgRating from "./../restoDetails/avgRating";
+import Call from 'react-ionicons/lib/IosCall'
+import Cash from 'react-ionicons/lib/IosCash'
+import Star from 'react-ionicons/lib/IosStar'
+import Pin from 'react-ionicons/lib/IosPin'
+
 
 let api = "http://10.10.200.10:9000/searchL?";
 
@@ -16,7 +21,8 @@ class Cards extends React.Component {
             data : [],
             isLoaded: false,
             items: [],
-            id:""
+            id:"",
+       
           }
         }
         onButtonChange(event) {
@@ -49,7 +55,8 @@ class Cards extends React.Component {
                    console.log(result)
                    this.setState({
                        isLoaded: true,
-                       items: result
+                       items: result,
+                 
                    });
                    console.log(this.state);
                },
@@ -121,42 +128,44 @@ class Cards extends React.Component {
         return(
          
                  <Card >   
-                     <Row>
+                  <Row>
                      <Col>          
                           <CardImg  style={{width:"250px"}} src={RestaurantDetails.imageUrls[0]} alt="Card image cap" height="200px"/> 
 
-                     </Col>
-                     <Col>
+                    </Col>
+                    <Col>
                      <Row>
-                         <Col>
-                     <strong><CardTitle style={{fontSize:"20px"}}>{RestaurantDetails.name}</CardTitle></strong>
-                     </Col>
+                      <Col>
+                        <strong><CardTitle style={{fontSize:"20px"}}>{RestaurantDetails.name}</CardTitle></strong>
+                      </Col>
                      <br></br>
-                     <Col>
-                       <AvgRating id={RestaurantDetails.id}/>
+                     <Col >
+                     <div style={{float:"right"}}>
+                     {RestaurantDetails.avgRating<3? 
+                    <h4><Badge color="warning"> {RestaurantDetails.avgRating}</Badge></h4>:
+                    <h4><Badge color="success">{RestaurantDetails.avgRating}</Badge></h4>
+                  }
+                  </div>
                      </Col>
                      </Row>
-                     <CardText>{RestaurantDetails.address}</CardText>      
+                     <CardText><Pin/>{RestaurantDetails.address}</CardText>      
                      </Col> 
                     
                      </Row>
                      <hr></hr>
                      <Row>
-                         <CardBody>  
+                     <CardBody>  
+                         <Row><Col sm={1}><Call/></Col><Col>{RestaurantDetails.phno}</Col></Row>
+                         <Row><Col sm={1}><Cash /></Col><Col>{RestaurantDetails.cost} (for two)</Col></Row>
+                         <Row><Col sm={1}><Star beat="true"/></Col><Col>{RestaurantDetails.featured_in}</Col></Row>
                                 
-                                
-                                <CardSubtitle>{RestaurantDetails.phno}</CardSubtitle>
-                                <CardSubtitle>{RestaurantDetails.cost}</CardSubtitle>
-                                <CardSubtitle>{RestaurantDetails.featured_in}</CardSubtitle>
                                  
-          
-                                 <Button onClick={this.onButtonChange} value={RestaurantDetails.id}>Details</Button> 
-                               
-                            
-                         </CardBody>
-                        </Row>
+                         <div style={{textAlign:"right"}}><Button onClick={this.onButtonChange}  value={RestaurantDetails.id}>Details</Button></div>
+                                                     
+                      </CardBody>
+                    </Row>
                         
-                       </Card>
+                  </Card>
                       
         )
          })}
@@ -165,7 +174,7 @@ class Cards extends React.Component {
     )
         }
         else{
-            return(<h1>error</h1>)
+            return(<div><center>Loading food<Spinner style={{ width: '3rem', height: '3rem' }} type="grow" /></center></div>)
         }
 
         
