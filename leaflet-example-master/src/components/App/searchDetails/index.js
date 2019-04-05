@@ -5,9 +5,14 @@ import Header from "./../Home/header"
 import LoggedHeader from "./../loggedUser/header"
 import Search from "./../Home/search"
 import { Card, CardImg, CardText, CardBody,
-    CardTitle, CardSubtitle, Button,Row,Col } from 'reactstrap';
+    CardTitle, CardSubtitle, Button,Row,Col, Badge } from 'reactstrap';
 import {CardColumns} from "reactstrap";
 import Filters from "./../Home/filter"
+import Call from 'react-ionicons/lib/IosCall'
+import Cash from 'react-ionicons/lib/IosCash'
+import Star from 'react-ionicons/lib/IosStar'
+import Pin from 'react-ionicons/lib/IosPin'
+
 
 let name;
 let id;
@@ -110,19 +115,45 @@ class SearchDetails extends React.Component {
                     //let url="http://localhost:9000/images?id="+RestaurantDetails.urls[0];
                 return(
                     
-                        <Card >
-                        <CardImg top width="100%"  src={RestaurantDetails.imageUrls[0]} alt="Card image cap" height="200px"/>
-                        <CardBody> 
-                            <div key={index}>
-                                <CardTitle>{RestaurantDetails.name}</CardTitle>
-                                <CardSubtitle>{RestaurantDetails.phNo}</CardSubtitle>
-                                <CardText>{RestaurantDetails.address}</CardText>
-
-                                <Button onClick={this.onButtonChange} value={RestaurantDetails.id}>Details</Button> 
-                                </div>
-                            
+                    <Card style={{backgroundColor:"#f2f2f3"}}>   
+                    <Row>
+                       <Col>          
+                            <CardImg  style={{width:"250px"}} src={RestaurantDetails.imageUrls[0]} alt="Card image cap" height="200px"/> 
+  
+                      </Col>
+                      <Col>
+                       <Row>
+                        <Col>
+                          <strong><CardTitle style={{fontSize:"20px"}}>{RestaurantDetails.name}</CardTitle></strong>
+                        </Col>
+                       <br></br>
+                       <Col >
+                       <div style={{float:"right"}}>
+                       {RestaurantDetails.avgRating<3? 
+                      <h4><Badge color="warning"> {RestaurantDetails.avgRating}</Badge></h4>:
+                      <h4><Badge color="success">{RestaurantDetails.avgRating}</Badge></h4>
+                    }
+                    </div>
+                       </Col>
+                       </Row>
+                       <CardText><Pin/>{RestaurantDetails.address}</CardText>      
+                       </Col> 
+                      
+                       </Row>
+                       <hr></hr>
+                       <Row>
+                       <CardBody>  
+                           <Row><Col sm={1}><Call/></Col><Col>{RestaurantDetails.phno}</Col></Row>
+                           <Row><Col sm={1}><Cash /></Col><Col>{RestaurantDetails.cost} (for two)</Col></Row>
+                           <Row><Col sm={1}><Star beat="true"/></Col><Col>{RestaurantDetails.featured_in}</Col></Row>
+                                  
+                                   
+                           <div style={{textAlign:"right"}}><Button onClick={this.onButtonChange}  value={RestaurantDetails.id}>Details</Button></div>
+                                                       
                         </CardBody>
-                        </Card>
+                      </Row>
+                          
+                    </Card>
                       
                     )
                 })}

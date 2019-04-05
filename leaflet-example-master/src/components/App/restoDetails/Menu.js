@@ -49,7 +49,7 @@ class Menu extends React.Component {
        render() {
         console.log(this.props.id)
         return(
-            <Card >
+            <Card style={{backgroundColor:"#f2f2f3"}}>
             <label>Menu</label>
             <center>
             <div> {this.state.data.map((RestaurantDetails,index) =>{

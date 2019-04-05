@@ -60,7 +60,7 @@ class Photo extends React.Component {
             <>
             {console.log("1")}
             {console.log(this.state.data)}
-            <Card>
+            <Card style={{backgroundColor:"#f2f2f3"}}>
                 <br></br>
             <label>Photos</label>
             <div> {this.state.data.map((RestaurantDetails,index) =>{
@@ -69,7 +69,7 @@ class Photo extends React.Component {
                    <CardColumns>
                    <div> {imageUrls.map((images,index)=>
                  <Card>              
-                        <CardImg style={{width:'200px'}} top width="100%" src={images} alt="Card image cap" height="300px"/> 
+                        <CardImg  top width="100%" src={images} alt="Card image cap" height="300px"/> 
                    </Card>                       
                    
                 )}

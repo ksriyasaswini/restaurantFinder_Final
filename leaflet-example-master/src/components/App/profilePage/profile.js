@@ -5,10 +5,15 @@ import Header from "./../Home/header"
 import LoggedHeader from "./../loggedUser/header"
 
 import { Col, Row, Form, FormGroup, Label, Input, FormText, Card, CardImg, CardText, CardBody,
-    CardTitle, CardSubtitle, Button } from 'reactstrap';
+    CardTitle, CardSubtitle, Button, Badge } from 'reactstrap';
 import { CardColumns } from "react-bootstrap";
 import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import {withRouter} from 'react-router-dom';
+
+import Call from 'react-ionicons/lib/IosCall'
+import Cash from 'react-ionicons/lib/IosCash'
+import Star from 'react-ionicons/lib/IosStar'
+import Pin from 'react-ionicons/lib/IosPin'
  
 var user={}
 var favorites=[]
@@ -131,22 +136,47 @@ class Profile extends React.Component {
                 <CardTitle>Favourites:</CardTitle>
                 <br/>
                 <CardColumns>
-                <div> {favorites.map((fav,index)=>{
+                <div> {favorites.map((RestaurantDetails,index)=>{
                         return(
-             
-              
-                            <Card width="100%">              
-                               <CardImg top width="100%" src={fav.imageUrls[0]} alt="Card image cap" height="200px"/> 
-                              <CardBody>  
-                                   <div key={index}>  
-                                      <CardTitle>{fav.name}</CardTitle>
-                                      <CardSubtitle>{fav.phNo}</CardSubtitle>
-                                      <CardText>{fav.address}</CardText>
-                
-                                      <Button onClick={this.onButtonChange} value={fav.id}>Details</Button> 
-                                    </div>
+
+                            <Card style={{backgroundColor:"#f2f2f3", boxShadow: "5px 5px #f2f2f3"}}>   
+                            <Row>
+                               <Col>          
+                                    <CardImg  style={{width:"400px"}} src={RestaurantDetails.imageUrls[0]} alt="Card image cap" height="200px"/> 
+          
+                              </Col>
+                              <Col>
+                               <Row>
+                                <Col>
+                                  <strong><CardTitle style={{fontSize:"20px"}}>{RestaurantDetails.name}</CardTitle></strong>
+                                </Col>
+                               <br></br>
+                               <Col >
+                               <div style={{float:"right"}}>
+                               {RestaurantDetails.avgRating<3? 
+                              <h4><Badge color="warning"> {RestaurantDetails.avgRating}</Badge></h4>:
+                              <h4><Badge color="success">{RestaurantDetails.avgRating}</Badge></h4>
+                            }
+                            </div>
+                               </Col>
+                               </Row>
+                               <CardText><Pin/>{RestaurantDetails.address}</CardText>      
+                               </Col> 
+                              
+                               </Row>
+                               <hr></hr>
+                               <Row>
+                               <CardBody>  
+                                   <Row><Col sm={1}><Call/></Col><Col>{RestaurantDetails.phno}</Col></Row>
+                                   <Row><Col sm={1}><Cash /></Col><Col>{RestaurantDetails.cost} (for two)</Col></Row>
+                                   <Row><Col sm={1}><Star beat="true"/></Col><Col>{RestaurantDetails.featured_in}</Col></Row>
+                                          
+                                           
+                                   <div style={{textAlign:"right"}}><Button onClick={this.onButtonChange}  value={RestaurantDetails.id}>Details</Button></div>
+                                                               
+                                </CardBody>
+                              </Row>
                                   
-                              </CardBody>
                             </Card>
                             )
                     }
@@ -157,13 +187,13 @@ class Profile extends React.Component {
                 </CardColumns>
             </Card> 
             <br />
-            <Card>
+            {/* <Card>
                 <CardTitle>Restaurants added:</CardTitle>
                 <br/>
                 <CardColumns>
 
                 </CardColumns>
-            </Card>            
+            </Card>             */}
 
              </div>
             

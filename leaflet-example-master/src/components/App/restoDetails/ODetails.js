@@ -87,7 +87,7 @@ class ODetails extends React.Component{
 
         return(
                        
-        <Card>
+        <Card style={{backgroundColor:"#f2f2f3"}}>
             <CardBody>
                 <Row>
                     <Col>

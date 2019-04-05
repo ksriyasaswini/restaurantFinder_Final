@@ -59,11 +59,13 @@ class Home extends React.Component {
                         </div>
                 </Row> */}
              <div style={{marginTop:"200px"}}>
-                <Row style={{width:'100%'}}>
+                <Row style={{marginLeft:'150px'}}>
                         <Col xs="auto">
+                        
                         <Filters/>
+                        
                         </Col >
-                        <Col xs="auto" sm = "12" md={{ size:'9'}}>
+                        <Col xs="auto" sm = "12" md={{ size:'9'}} style={{width:'100%',marginLeft:'5%'}}>
                         
                         <label>Near Me</label>
 

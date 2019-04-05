@@ -2,6 +2,7 @@ import React from 'react';
 import {Form, FormGroup, Label, Input,Button} from 'reactstrap'
 import Range from './Range';
 import {withRouter} from 'react-router-dom';
+import {Card} from 'reactstrap';
 
 let i=0;
 var body;
@@ -23,9 +24,30 @@ var cus=[];
         this.handlecuisineChange = this.handlecuisineChange.bind(this);
         this.handlesortChange = this.handlesortChange.bind(this);
         this.filter = this.filter.bind(this);
+        this.unCheckIt = this.unCheckIt.bind(this);
       
         this.updateRange = this.updateRange.bind(this);
     }
+
+    handlesortChange(e) {
+        if(this.state.checked !== e.target.checked) {
+        let sort=e.target.value
+        this.setState({
+        checked:e.target.checked,
+        sort: sort,
+        });
+        }
+        
+        }
+
+unCheckIt(e) {
+    e.preventDefault();
+    this.setState({
+    checked:false
+    });
+    }
+
+
       filter(e) {
     body={
         type: this.state.type,
@@ -35,6 +57,8 @@ var cus=[];
         open:this.state.open
         }
         console.log(body)
+        if(this.props.location.pathname == "/Filters")
+        window.location.reload()
         let path=`Filters`;
          this.props.history.push({
             pathname: path,
@@ -68,11 +92,6 @@ var cus=[];
         // console.log("cuisines:"+e.target.value+"="+this.state.Cuisines[e.target.value])
      }
 
-     handlesortChange(e) {
-        let sort=e.target.value
-         this.setState({sort: sort})
-     }
-
      
     render () {
         const { rangeVal } = this.state;
@@ -83,27 +102,29 @@ var cus=[];
         console.log(this.state.sort);
         console.log(this.state.rangeVal);
         return (
+            <Card style={{backgroundColor:"#f2f2f3", padding:"20px"}}>
+                   
               <Form style={{width:"100%"}}>
                 <legend>Cuisines </legend>
                 <FormGroup onChange = {this.handlecuisineChange} check>
                     <Label check>
-                        <Input type = "checkbox" name="cuisines" value="Italian"/> Italian 
+                        <Input type = "checkbox" name="cuisines" value="Italian" /> Italian 
                     </Label>
                 <br></br>
                     <Label check>
-                        <Input type = "checkbox" name="cuisines" value="Thai"/> Thai
+                        <Input type = "checkbox" name="cuisines" value="Thai" /> Thai
                     </Label>
                     <br></br>
                     <Label check>
-                        <Input type = "checkbox" name="cuisines" value="SouthIndian"/> SouthIndian
+                        <Input type = "checkbox" name="cuisines" value="SouthIndian" /> SouthIndian
                     </Label>
                     <br></br>
                     <Label check>
-                        <Input type = "checkbox" name="cuisines" value="NorthIndian"/> NorthIndian
+                        <Input type = "checkbox" name="cuisines" value="NorthIndian" /> NorthIndian
                     </Label>
                     <br></br>
                     <Label check>
-                        <Input type = "checkbox" name="cuisines" value="Chinese"/> Chinese
+                        <Input type = "checkbox" name="cuisines" value="Chinese" /> Chinese
                     </Label>
                 </FormGroup>
                 <legend>Cost </legend>
@@ -144,41 +165,43 @@ var cus=[];
                     
                 
                 <legend>Open/close</legend>
-                <FormGroup onChange = {this.handleTimeChange} check>
+        
+                <FormGroup onChange = {this.handleTimeChange} check> 
                     <Label check>
-                    <Input type="radio" name="time" value ="Open only"/>{' '}
+                    <Input type="radio" name="time" value ="Open only" />{' '}
                     Open only
                     </Label>
                     <br></br>
                     <Label check>
-                    <Input type="radio" name="time" value= "Open or close"/>{' '}
+                    <Input type="radio" name="time" value= "Open or close" />{' '}
                     Open or close
                     </Label>
                 </FormGroup>                
                 <legend>Sort  </legend> 
 
-                <label>clear</label>
                 <FormGroup onChange = {this.handlesortChange} check>
                     <Label check>
-                    <Input type="radio" name="sort" value="1"/>{' '}
+                    <Input type="radio" name="sort" value="1" />{' '}
                     By Ratings-high to low
                     </Label>
                 
               <br></br>
                     <Label check>
-                    <Input type="radio" name="sort" value="2"/>{' '}
+                    <Input type="radio" name="sort" value="2" />{' '}
                     By cost- high to low 
                     </Label>
                <br></br>
                     <Label check>
-                    <Input type="radio" name="sort" value="3"/>{' '}
+                    <Input type="radio" name="sort" value="3" />{' '}
                     By cost- low to high 
                     </Label>
                 </FormGroup>  
                 <br></br>
+               
                <Button onClick={this.filter}>Filter</Button>
                                          
              </Form>
+             </Card>
         );
     }
 }

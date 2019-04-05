@@ -50,7 +50,7 @@ class Details extends React.Component {
                    
                      <br></br>
                      <ODetails id={this.state.id1}/>
-                    
+                    <br/>
                      <Menu id={this.state.id1}/>
                      <br>
                      </br>

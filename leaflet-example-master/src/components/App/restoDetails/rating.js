@@ -76,7 +76,7 @@ export default class rating extends React.Component {
          console.log(reviews)
          console.log(body)
 
-         const url = "http://localhost:9000/review/create";
+         const url = "http://10.10.200.10:9000/review/create";
       
       console.log(url)
   
@@ -98,9 +98,13 @@ export default class rating extends React.Component {
             })
             .then(response => response.json())
             .then(contents => {console.log(contents);
+                window.location.reload()
+              
+                alert("Review added")
                               
         })
             .catch((err)=> console.log(err))
+           
 
      }
 
@@ -134,7 +138,7 @@ export default class rating extends React.Component {
                user=ReviewsDetails.user;
                
                return(
-                       <Card>
+                       <Card style={{backgroundColor:"#f2f2f3"}}>
                             <CardBody>
                                  <div>
                                     {/* <CardText>{user.username}</CardText>   */}

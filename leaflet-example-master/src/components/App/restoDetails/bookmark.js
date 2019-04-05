@@ -7,7 +7,7 @@ import MdHeart from 'react-ionicons/lib/MdHeart'
 var body;
 var user={}
 var favorites=[]
-var visible= false;
+var visible;
 export default class bookmark extends React.Component {
  
     constructor(props){
@@ -24,54 +24,55 @@ export default class bookmark extends React.Component {
         }
       }
 
-      componentDidMount() {
-        const url = "http://10.10.200.10:9000/profile?Token="+localStorage.getItem("AccessToken"); 
-        let headers = new Headers();
+    //   componentDidMount() {
+    //     const url = "http://10.10.200.10:9000/profile?Token="+localStorage.getItem("AccessToken"); 
+    //     let headers = new Headers();
 
-        headers.append('Content-Type', 'application/json');
-        headers.append('Accept', 'application/json');
+    //     headers.append('Content-Type', 'application/json');
+    //     headers.append('Accept', 'application/json');
 
-        headers.append('Access-Control-Allow-Origin', url);
-        headers.append('Access-Control-Allow-Credentials', 'true');
+    //     headers.append('Access-Control-Allow-Origin', url);
+    //     headers.append('Access-Control-Allow-Credentials', 'true');
 
-        headers.append('GET', 'POST');
+    //     headers.append('GET', 'POST');
 
-        fetch(url, {
-            headers: headers,
-            method: 'GET'
-        })
-        .then(response => response.json())
-        .then(contents => {console.log("in fetch: "+ contents);
-                            this.setState ({
-                            data : contents}
-                            )
-                            return(
-                                <div> {this.state.data.map((ProfileDetails, index)=> {
+    //     fetch(url, {
+    //         headers: headers,
+    //         method: 'GET'
+    //     })
+    //     .then(response => response.json())
+    //     .then(contents => {console.log("in fetch: "+ contents);
+    //                         this.setState ({
+    //                         data : contents}
+    //                         )
+    //                         return(
+    //                             <div> {this.state.data.map((ProfileDetails, index)=> {
                                  
-                                     console.log(ProfileDetails.favorites)
-                                     if(ProfileDetails.favorites != undefined ) {
-                                         for(let i=0;i<ProfileDetails.favorites.length;i++){
-                                             favorites[i]=ProfileDetails.favorites[i];
+    //                                  console.log(ProfileDetails.favorites)
+    //                                  if(ProfileDetails.favorites != undefined ) {
+    //                                      for(let i=0;i<ProfileDetails.favorites.length;i++) {
+    //                                          favorites[i]=ProfileDetails.favorites[i];  
+    //                                          console.log(this.props.id)
+    //                                      if(favorites[i].id == this.props.id){
+    //                                          console.log("fav id")
+    //                                          visible=true
+    //                                          console.log(visible)
+    //                                     } 
+    //                                  }
+    //                                  }
+    //                                  user=ProfileDetails.user
+                                      
+    //                                  })}
                          
-                                         if(favorites[i].id == this.props.id)
-                                            visible=true
-                                         
-                                     }
-                                     }
-                                     user=ProfileDetails.user
-                                    
-                                     
-                                     })}
-                         
-                                     </div>
-                             )
+    //                                  </div>
+    //                          )
                             
-            })
+    //         })
            
-        .catch(() => console.log("Can’t access " + url + " response. "))
-        console.log(this.state.data)
+    //     .catch(() => console.log("Can’t access " + url + " response. "))
+    //     console.log(this.state.data)
         
-      }
+    //   }
 
       addFav(x) {
         console.log(this.props.id)
@@ -181,9 +182,11 @@ export default class bookmark extends React.Component {
             })}
 
             </div> */}
-            
+            {
+                console.log(visible)}
                 
               {  
+                   
                       (!visible)?( <MdOut fontSize="30px"  onClick={this.addFav} color='#fffa8b' />):( <MdHeart fontSize="30px" color='#fffa8b' onClick={this.removeFav}/> )     
              }
           

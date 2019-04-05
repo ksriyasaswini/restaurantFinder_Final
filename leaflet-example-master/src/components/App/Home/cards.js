@@ -1,12 +1,13 @@
  import React from "react"
 import { Card, CardImg, CardText, CardBody,
-    CardTitle, CardSubtitle, Button, CardColumns,Row,Col,Spinner,Badge} from 'reactstrap';
+    CardTitle, CardSubtitle, Button, CardColumns,Row,Col,Spinner,Badge,  CardDeck} from 'reactstrap';
 import {withRouter} from 'react-router-dom';
 import AvgRating from "./../restoDetails/avgRating";
 import Call from 'react-ionicons/lib/IosCall'
 import Cash from 'react-ionicons/lib/IosCash'
 import Star from 'react-ionicons/lib/IosStar'
 import Pin from 'react-ionicons/lib/IosPin'
+
 
 
 let api = "http://10.10.200.10:9000/searchL?";
@@ -127,7 +128,7 @@ class Cards extends React.Component {
       {this.state.items.map((RestaurantDetails,index) =>{
         return(
          
-                 <Card >   
+                 <Card style={{backgroundColor:"#f2f2f3", boxShadow: "5px 5px #f2f2f3"}}>   
                   <Row>
                      <Col>          
                           <CardImg  style={{width:"250px"}} src={RestaurantDetails.imageUrls[0]} alt="Card image cap" height="200px"/> 
@@ -170,7 +171,7 @@ class Cards extends React.Component {
         )
          })}
        
-        </CardColumns>
+       </CardColumns>
     )
         }
         else{

@@ -76,7 +76,7 @@ class LogHeader extends React.Component {
     return (
       <div style={{backgroundColor:'#353535'}}>
         <Navbar color="#353535" light expand="md">
-          <NavbarBrand href="/home" style={{color: '#fffa8b'}}>WEBAPP</NavbarBrand>
+          <NavbarBrand href="/home" style={{color: '#fffa8b'}}>"KHA"-DAT</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>

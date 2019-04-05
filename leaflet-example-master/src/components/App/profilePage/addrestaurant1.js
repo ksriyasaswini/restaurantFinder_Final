@@ -215,25 +215,25 @@ class addRestaurant1 extends React.Component {
  }
 
  handleCuisineChange(e) {
-  console.log("change")
-  
-  cus[i++]=(e.target.value)
-  console.log(cus)
+ console.log("change")
+ 
+ cus[i++]=(e.target.value)
+ console.log(cus)
  }
 
  handleFeatureChange(e) {
-//   console.log("change")
+// console.log("change")
 
-   fea= (e.target.value).split(',')
-  console.log(fea)
+ fea= (e.target.value).split(',')
+ console.log(fea)
  }
 
  handleChange(e) {
-  
+ 
  let fields = this.state.fields;
  fields[e.target.name] = e.target.value;
  this.setState({
-  fields
+ fields
  });
 
  }
@@ -357,21 +357,21 @@ class addRestaurant1 extends React.Component {
  errors["phoneNumber"] = "*Please enter the phoneNumber.";
  }
  if (cus == null) {
-    formIsValid = false;
-    errors["cuisines"] = "*Please select the cuisine(s).";
-    }
+ formIsValid = false;
+ errors["cuisines"] = "*Please select the cuisine(s).";
+ }
  if (!fields["cost"]) {
-    formIsValid = false;
-    errors["cost"] = "*Please enter the cost.";
-    }
+ formIsValid = false;
+ errors["cost"] = "*Please enter the cost.";
+ }
 if (fea==null) {
-    formIsValid = false;
-    errors["featured"] = "*Please enter the feature(s).";
-    }
+ formIsValid = false;
+ errors["featured"] = "*Please enter the feature(s).";
+ }
 if (!fields["type"]) {
-    formIsValid = false;
-    errors["type"] = "*Please select the type.";
-    }
+ formIsValid = false;
+ errors["type"] = "*Please select the type.";
+ }
  this.setState({
  errors: errors
  });
@@ -398,130 +398,158 @@ if (!fields["type"]) {
 const { form} = this.state;
  return (
  <div>
-    {(localStorage.getItem("AccessToken")?(<Header1/>):(<Header/>))}<br/>
-    <div class ="container">
-        <div class="card">
-            <div class="card-body px-lg-6 pt-0" >
-                <h3 className="my-3"> Add Restaurant </h3>
-                <form method="post" name="sellForm" onSubmit= {this.submitSellForm} >
-                <div class="md-form">
-                    <label for="inputIconEx1">Restaurant Name</label>
-                    <input type="text" id="inputIconEx1" class="form-control" name="name" placeholder="Enter Restaurant Name " value={this.state.fields.name} onChange={this.handleChange} />
-                    <div className="errorMsg" style={{color:"red"}}>{this.state.errors.name}</div>
-                </div><br/>
-                
-                <div class="md-form">
-                    <label for="inputIconEx2">Working hrs</label>
-                    <input type="text" id="inputIconEx2" class="form-control" name="city" placeholder="Enter working hrs" value={this.state.fields.city} onChange={this.handleChange} />
-                    <div className="errorMsg" style={{color:"red"}}>{this.state.errors.city}</div>
-                </div><br/>
-
-                <div class="md-form">
-                    <label for="inputIconEx3">Address</label>
-                    <input type="text" id="inputIconEx1" class="form-control" name="address" placeholder="Enter address of the restaurant" value={this.state.fields.address} onChange={this.handleChange} />
-                    <div className="errorMsg" style={{color:"red"}}>{this.state.errors.address}</div>
-                </div><br/>
-                <div className="md-form">
-
-                <div class="md-form">
-                    <label for="inputIconEx3">Cost</label>
-                    <input type="number" id="inputIconEx4" class="form-control" name="cost" placeholder="Enter cost for two" value={this.state.fields.cost} onChange={this.handleChange} />
-                    <div className="errorMsg" style={{color:"red"}}>{this.state.errors.cost}</div>
-                </div><br/>
-                <div className="md-form"></div>
-
-                <div class="md-form">
-                    <label for="inputIconEx3">Cuisines</label>
-                    <FormGroup onChange = {this.handleCuisineChange} check>
-                        <Label check>
-                            <Input type = "checkbox" name="cuisines" value="Italian"/> Italian 
-                        </Label><br></br>
-                        <Label check>
-                            <Input type = "checkbox" name="cuisines" value="Thai"/> Thai
-                        </Label>
-                        <br></br>
-                        <Label check>
-                            <Input type = "checkbox" name="cuisines" value="SouthIndian"/> SouthIndian
-                        </Label> 
-                        <br></br>
-                        <Label check>
-                            <Input type = "checkbox" name="cuisines" value="NorthIndian"/> NorthIndian
-                        </Label>
-                        <br></br>
-                        <Label check>
-                            <Input type = "checkbox" name="cuisines" value="Chinese"/> Chinese
-                        </Label><br/>
-                        <Label check>
-                            <Input type = "checkbox" name="cuisines" value="Bakery"/>Bakery
-                        </Label><br/>
-                        <Label check>
-                            <Input type = "checkbox" name="cuisines" value="Cafe"/> Cafe
-                        </Label>
-                    </FormGroup>
-                    <div className="errorMsg" style={{color:"red"}}>{this.state.errors.cuisines}</div>
-                </div><br/>
-                <div className="md-form"></div>
-
-                <div class="md-form">
-                    <label for="inputIconEx3">Featured In</label>
-                    <input type="text" id="inputIconEx4" class="form-control" name="featured_in" placeholder="Enter features" value={this.state.fields.featured} onChange={this.handleFeatureChange} />
-                    <div className="errorMsg" style={{color:"red"}}>{this.state.errors.featured}</div>
-                </div><br/>
-                <div className="md-form"></div>
+ {(localStorage.getItem("AccessToken")?(<Header1/>):(<Header/>))}<br/>
+ <div class ="container" >
+ 
+ <div class="card-body px-lg-6 pt-0" >
+ <h3 className="my-3"> Add Restaurant </h3>
+ <form method="post" name="sellForm" onSubmit= {this.submitSellForm} >
+ <b><label>Basic Info</label></b>
+ <div class="card" style={{backgroundColor:"#f2f2f2"}}>
+ <div class="card-body px-lg-6 pt-0" >
+ <div class="md-form">
+ <label for="inputIconEx1">Restaurant Name</label>
+ <input type="text" id="inputIconEx1" class="form-control" name="name" placeholder="Enter Restaurant Name " value={this.state.fields.name} onChange={this.handleChange} />
+ <div className="errorMsg" style={{color:"red"}}>{this.state.errors.name}</div>
+ </div><br/>
+ 
+ <div class="md-form">
+ <label for="inputIconEx2">Timings (12 Hrs Format)</label>
+ <input type="text" id="inputIconEx2" class="form-control" name="city" placeholder="Enter working hrs" value={this.state.fields.city} onChange={this.handleChange} />
+ <div className="errorMsg" style={{color:"red"}}>{this.state.errors.city}</div>
+ </div><br/>
+ <div class="md-form">
+ <label for="inputIconEx4">Phone Number</label>
+ <input type="number" id="inputIconEx4" class="form-control" name="phoneNumber" placeholder="Enter phone number" value={this.state.fields.phoneNumber} onChange={this.handleChange} />
+ <div className="errorMsg" style={{color:"red"}}>{this.state.errors.phoneNumber}</div>
+ </div>
+ </div>
+ </div>
+ <br/>
 
 
-                <div class="md-form">
-                    <label for="inputIconEx3">Type:</label>
-                    <FormGroup onChange = {this.handleChange} check>
-                        <Label check>
-                            <Input type="radio" name="type" value="Veg Only" />{' '}
-                                Veg Only
-                        </Label>
-                        <br></br>
-                        <Label check>
-                            <Input type="radio" name="type" value=" Veg / Non-Veg" />{' '}
-                                Veg / Non-Veg
-                        </Label>
-                    </FormGroup>
-                    <div className="errorMsg" style={{color:"red"}}>{this.state.errors.type}</div>
-                </div>
-                <div className="md-form"></div> 
-                <br/><br/>
+ <b><label>Location Details</label></b>
+ <div class="card" style={{backgroundColor:"#e7e6e6"}}>
+ <div class="card-body px-lg-6 pt-0" >
+ <div class="md-form">
+ <label for="inputIconEx3">Address</label>
+ <input type="text" id="inputIconEx1" class="form-control" name="address" placeholder="Enter address of the restaurant" value={this.state.fields.address} onChange={this.handleChange} />
+ <div className="errorMsg" style={{color:"red"}}>{this.state.errors.address}</div>
+ </div><br/>
 
-                <div class="md-form">
-                    <label for="inputIconEx4">Phone Number</label>
-                    <input type="number" id="inputIconEx4" class="form-control" name="phoneNumber" placeholder="Enter phone number" value={this.state.fields.phoneNumber} onChange={this.handleChange} />
-                    <div className="errorMsg" style={{color:"red"}}>{this.state.errors.phoneNumber}</div>
-                </div><br/><br/>
+ 
 
-                <MapRender/>
-                </div><br/>
+ <MapRender/>
+ </div>
+ </div>
 
 
-                <div class="md-form">
-                    <label for="inputIconEx5">Upload images:</label>
-                    <input className="fileInput" type="file" name="imageUrls" onChange={(e)=>this._handleImageChange(e)} /><br></br>
-                    <div className="imgPreview" ><br></br>
-                        {$imagePreview }
-                    </div><br></br>
-                    <button className="submitButton" type="submit" onClick={(e)=>this._handleSubmit(e)}>Upload Image</button><br></br>
-                </div>
-                <br></br>
-                
-                <div class="md-form">
-                    <label for="inputIconEx5">Upload Menu:</label>
-                    <input className="fileInput" type="file" name="menuUrls" onChange={(e)=>this._handleMenuImageChange(e)} /><br></br>
-                    <div className="imgPreview1" ><br></br>
-                    {$imagePreview1 }
-                    </div><br></br>
-                    <button className="submitButton" type="submit" onClick={(e)=>this._handleMenuSubmit(e)}>Upload Menu</button><br></br>
-                </div>
-                <button class="btn btn-info btn-block my-4" style={{backgroundColor:"#353535",color:"yellow"}} type="submit">Submit</button> 
-                {/* <br/> <br/> <Button width="100%" type="submit">Submit</Button> */}
-                </form>
-            </div>
-        </div>
-    </div>
+ <br/>
+ <b><label>Other Info</label></b>
+ <div class="card" style={{backgroundColor:"#f2f2f2"}}>
+ <div class="card-body px-lg-6 pt-0" >
+ <div className="md-form">
+
+ <div class="md-form">
+ <label for="inputIconEx3">Cost</label>
+ <input type="number" id="inputIconEx4" class="form-control" name="cost" placeholder="Enter cost for two" value={this.state.fields.cost} onChange={this.handleChange} />
+ <div className="errorMsg" style={{color:"red"}}>{this.state.errors.cost}</div>
+ </div><br/>
+ <div className="md-form"></div>
+
+ <div class="md-form">
+ <label for="inputIconEx3">Cuisines</label>
+ <FormGroup onChange = {this.handleCuisineChange} check>
+ <Label check>
+ <Input type = "checkbox" name="cuisines" value="Italian"/> Italian 
+ </Label><br></br>
+ <Label check>
+ <Input type = "checkbox" name="cuisines" value="Thai"/> Thai
+ </Label>
+ <br></br>
+ <Label check>
+ <Input type = "checkbox" name="cuisines" value="SouthIndian"/> SouthIndian
+ </Label> 
+ <br></br>
+ <Label check>
+ <Input type = "checkbox" name="cuisines" value="NorthIndian"/> NorthIndian
+ </Label>
+ <br></br>
+ <Label check>
+ <Input type = "checkbox" name="cuisines" value="Chinese"/> Chinese
+ </Label><br/>
+ <Label check>
+ <Input type = "checkbox" name="cuisines" value="Bakery"/>Bakery
+ </Label><br/>
+ <Label check>
+ <Input type = "checkbox" name="cuisines" value="Cafe"/> Cafe
+ </Label>
+ </FormGroup>
+ <div className="errorMsg" style={{color:"red"}}>{this.state.errors.cuisines}</div>
+ </div><br/>
+ <div className="md-form"></div>
+
+ <div class="md-form">
+ <label for="inputIconEx3">Featured In</label>
+ <input type="text" id="inputIconEx4" class="form-control" name="featured_in" placeholder="Enter features" value={this.state.fields.featured} onChange={this.handleFeatureChange} />
+ <div className="errorMsg" style={{color:"red"}}>{this.state.errors.featured}</div>
+ </div><br/>
+
+ <div className="md-form"></div>
+ <div class="md-form">
+ <label for="inputIconEx3">Type:</label>
+ <FormGroup onChange = {this.handleChange} check>
+ <Label check>
+ <Input type="radio" name="type" value="Veg Only" />{' '}
+ Veg Only
+ </Label>
+ <br></br>
+ <Label check>
+ <Input type="radio" name="type" value=" Veg / Non-Veg" />{' '}
+ Veg / Non-Veg
+ </Label>
+ </FormGroup>
+ <div className="errorMsg" style={{color:"red"}}>{this.state.errors.type}</div>
+ </div>
+ 
+ </div><br/>
+ </div>
+ </div>
+
+
+
+ <br/>
+ <b><label>Image Uploads</label></b>
+ <div class="card" style={{backgroundColor:"#f2f2f2"}}>
+ <div class="card-body px-lg-6 pt-0" >
+ <br/>
+ <div class="md-form">
+ <label for="inputIconEx5">Upload Restaurant Photos:</label><br/>
+ <input className="fileInput" type="file" name="imageUrls" onChange={(e)=>this._handleImageChange(e)} /><br></br>
+ <div className="imgPreview" ><br></br>
+ {$imagePreview }
+ </div><br></br>
+ <button className="submitButton" type="submit" onClick={(e)=>this._handleSubmit(e)}>Upload Image</button><br></br>
+ </div>
+ <br></br><br/>
+ 
+ <div class="md-form">
+ <label for="inputIconEx5">Upload Menu:</label><br/>
+ <input className="fileInput" type="file" name="menuUrls" onChange={(e)=>this._handleMenuImageChange(e)} /><br></br>
+ <div className="imgPreview1" ><br></br>
+ {$imagePreview1 }
+ </div><br></br>
+ <button className="submitButton" type="submit" onClick={(e)=>this._handleMenuSubmit(e)}>Upload Menu</button><br></br>
+ </div>
+ 
+ {/* <br/> <br/> <Button width="100%" type="submit">Submit</Button> */}
+ </div>
+ </div>
+ <button class="btn btn-info btn-block my-4" style={{backgroundColor:"#353535",color:"yellow"}} type="submit">Add Restaurant</button> 
+ </form>
+ </div>
+ 
+ </div>
  
  </div>
  );
