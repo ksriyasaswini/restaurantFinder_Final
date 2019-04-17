@@ -5,6 +5,10 @@ import {Form, FormGroup, Label, Input,Button} from 'reactstrap'
 import Header from "../Home/header"
 import Header1 from "./../loggedUser/header"
 
+import Time1 from "react-ionicons/lib/IosTimeOutline";
+import Time2 from "react-ionicons/lib/IosTime";
+
+
 import MapRender from './../../mapRender';
 
 let i=0;
@@ -25,7 +29,9 @@ class addRestaurant1 extends React.Component {
  type: '',
  imageUrls:[],
  menuUrls:[],
- 
+ from_Timings : "",
+ upto_Timings : "",
+
  },
  fields:{},
  errors: {},
@@ -229,9 +235,11 @@ class addRestaurant1 extends React.Component {
  }
 
  handleChange(e) {
+
  
  let fields = this.state.fields;
  fields[e.target.name] = e.target.value;
+
  this.setState({
  fields
  });
@@ -255,7 +263,10 @@ class addRestaurant1 extends React.Component {
  fields["featured"]= [];
  fields["type"]= "";
  fields["imageUrls"]=[];
- fields["menuUrls"]=[]
+ fields["menuUrls"]=[];
+ fields["from_Timings"]="";
+ fields["upto_Timings"]="";
+
  this.setState({fields:fields});
  let store = this.state;
  store.form.name = this.state.fields["name"];
@@ -266,6 +277,10 @@ class addRestaurant1 extends React.Component {
  store.form.cuisines = this.state.fields["cuisines"];
  store.form.fea = this.state.fields["featured"];
  store.form.cuisines = this.state.fields["type"];
+ store.form.from_Timings = this.state.fields["from_Timings"];
+ store.form.upto_Timings = this.state.fields["upto_Timings"];
+
+
  
  console.log('img........'+this.state.img);
  store.form.imageUrls=this.state.img;
@@ -280,6 +295,7 @@ class addRestaurant1 extends React.Component {
  console.log("Form imgurl"+this.state.form.menuUrls);
  console.log("Form imgurl"+this.state.form.imageUrls);
  console.log("Form cost"+this.state.form.cost);
+ console.log("from timing"+this.state.form.from_Timings);
  }
  let token = localStorage.getItem("AccessToken");
  const url = "http://10.10.200.10:9000/restaurants";
@@ -304,10 +320,13 @@ class addRestaurant1 extends React.Component {
  phno:this.state.fields.phoneNumber,
  cuisines:cus,
  featured_in:fea,
+ fromTimings: this.state.fields.from_Timings,
+ toTimings : this.state.fields.upto_Timings,
  cost:this.state.fields.cost,
  type:this.state.fields.type,
  imageUrls:this.state.form.imageUrls,
  menuUrls:this.state.form.menuUrls,
+
  latitude:localStorage.getItem("latitude"),
  longitude:localStorage.getItem("longitude")
  }
@@ -413,11 +432,27 @@ const { form} = this.state;
  <div className="errorMsg" style={{color:"red"}}>{this.state.errors.name}</div>
  </div><br/>
  
- <div class="md-form">
+ {/* <div class="md-form">
  <label for="inputIconEx2">Timings (12 Hrs Format)</label>
  <input type="text" id="inputIconEx2" class="form-control" name="city" placeholder="Enter working hrs" value={this.state.fields.city} onChange={this.handleChange} />
  <div className="errorMsg" style={{color:"red"}}>{this.state.errors.city}</div>
- </div><br/>
+ </div><br/> */}
+
+ <div class="md-form">
+   <Time1/>&nbsp;
+   <label for="inputIconEx3"><b>From Timings</b></label>
+   <input type="time" id="example-time-input" class="form-control" name="from_Timings" placeholder="Enter from Timings"  value={this.state.fields.from_Timings} onChange={this.handleChange} />
+   <div className="errorMsg">{this.state.errors.from_Timings}</div>
+   </div><br/>
+
+   <div class="md-form">
+   <Time2/>&nbsp;
+   <label for="inputIconEx4"><b>Upto Timings</b></label>
+   <input type="time" id="example-time-input"  class="form-control" name="upto_Timings" placeholder="Enter Upto Timings"  value={this.state.fields.upto_Timings} onChange={this.handleChange} />
+   <div className="errorMsg">{this.state.errors.from_Timings}</div>
+   </div><br/>
+
+
  <div class="md-form">
  <label for="inputIconEx4">Phone Number</label>
  <input type="number" id="inputIconEx4" class="form-control" name="phoneNumber" placeholder="Enter phone number" value={this.state.fields.phoneNumber} onChange={this.handleChange} />
@@ -493,7 +528,8 @@ const { form} = this.state;
  <label for="inputIconEx3">Featured In</label>
  <input type="text" id="inputIconEx4" class="form-control" name="featured_in" placeholder="Enter features" value={this.state.fields.featured} onChange={this.handleFeatureChange} />
  <div className="errorMsg" style={{color:"red"}}>{this.state.errors.featured}</div>
- </div><br/>
+ </div><br/> 
+
 
  <div className="md-form"></div>
  <div class="md-form">

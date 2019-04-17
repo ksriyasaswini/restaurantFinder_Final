@@ -20,11 +20,11 @@ class Details extends React.Component {
 
     constructor(props){
         super(props);
-         id =(this.props.location.state.id)
+         id =(localStorage.getItem("id"))
        console.log(id)
         this.state = {
           data : [],
-          id1:this.props.location.state.id
+          id1:localStorage.getItem("id")
         }
         //this.setState({id1 : id})
     
@@ -43,20 +43,20 @@ class Details extends React.Component {
                     }
                     <div style={{position:'relative'}}>
                     <Bread />
-                    <Search id={this.state.id1}/> 
+                    <Search id={localStorage.getItem("id")}/> 
                      <br></br>
                      </div>
-                    <div><NaviBar id={this.state.id1}/></div><br/>
+                    <div><NaviBar id={localStorage.getItem("id")}/></div><br/>
                    
                      <br></br>
-                     <ODetails id={this.state.id1}/>
+                     <ODetails id={localStorage.getItem("id")}/>
                     <br/>
-                     <Menu id={this.state.id1}/>
+                     <Menu id={localStorage.getItem("id")}/>
                      <br>
                      </br>
-                     <Photo id={this.state.id1}/>
+                     <Photo id={localStorage.getItem("id")}/>
                      <br></br>
-                     <Rating id={this.state.id1}/>
+                     <Rating id={localStorage.getItem("id")}/>
 
                     </div>
               

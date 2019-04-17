@@ -117,7 +117,7 @@ export default class bookmark extends React.Component {
            alert("Please Login to Remove Bookmark")}
         else {
 
-              const url = "http://10.10.200.10:9000/favourite?id="+this.props.id+ "&AccessToken="+localStorage.getItem("AccessToken"); 
+              const url = "http://10.10.200.10:9000/favourite?id="+localStorage.getItem("id")+ "&AccessToken="+localStorage.getItem("AccessToken"); 
                 let headers = new Headers();
       
                 headers.append('Content-Type', 'application/json');

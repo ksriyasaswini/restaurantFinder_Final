@@ -187,13 +187,7 @@ class Profile extends React.Component {
                 </CardColumns>
             </Card> 
             <br />
-            {/* <Card>
-                <CardTitle>Restaurants added:</CardTitle>
-                <br/>
-                <CardColumns>
-
-                </CardColumns>
-            </Card>             */}
+            
 
              </div>
             

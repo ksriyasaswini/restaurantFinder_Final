@@ -17,8 +17,8 @@ export default class AvgRating extends React.Component {
       }
 
       componentDidMount() {
-          console.log("rating",this.props.id)
-        const url = "http://10.10.200.10:9000/avg?rid="+this.props.id; 
+          console.log("rating",localStorage.getItem("id"))
+        const url = "http://10.10.200.10:9000/avg?rid="+localStorage.getItem("id"); 
     //   const url = "http://localhost:9000/avg?rid="+this.;
         let headers = new Headers();
 

@@ -45,7 +45,7 @@ class ODetails extends React.Component{
     }
       componentDidMount() {
         //const url = "http://10.10.200.12:9000/foods"; 
-        const url = "http://10.10.200.10:9000/restaurants/id?id="+this.props.id; 
+        const url = "http://10.10.200.10:9000/restaurants/id?id="+localStorage.getItem("id"); 
         let headers = new Headers();
 
         headers.append('Content-Type', 'application/json');
@@ -111,11 +111,11 @@ class ODetails extends React.Component{
                     
                 </Row><br/>
 
-                <Row>
+                {/* <Row>
                     <Col><h4><Badge color="light">Working hours:&nbsp;</Badge></h4>{RestaurantDetails.workinghrs}</Col>
                     
                     
-                </Row><br/>
+                </Row><br/> */}
 
                 <Row>
                

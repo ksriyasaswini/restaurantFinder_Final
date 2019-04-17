@@ -10,12 +10,12 @@ class PhotoFinal extends React.Component {
       
     constructor(props){
         super(props);
-        let id = this.props.location.state.id
+        let id = localStorage.getItem("id")
         this.state = {
-            id1 : this.props.location.state.id
+            id1 : localStorage.getItem("id")
          
         }
-        console.log(this.state.id1)
+        console.log(localStorage.getItem("id"))
       }
 
     render() {
@@ -29,9 +29,9 @@ class PhotoFinal extends React.Component {
                 <Search/> 
                 <br></br>
                 </div>
-                <div><NaviBar id={this.state.id1}/></div><br/>
+                <div><NaviBar id={localStorage.getItem("id")}/></div><br/>
                 
-                <Photo  id={this.state.id1}/>
+                <Photo  id={localStorage.getItem("id")}/>
                 
             </div>
                 

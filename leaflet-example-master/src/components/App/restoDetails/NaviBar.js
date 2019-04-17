@@ -18,7 +18,7 @@ class NaviBar extends React.Component{
 
   componentDidMount() {
    //const url = "http://10.10.200.12:9000/foods"; 
-   const url = "http://10.10.200.10:9000/restaurants/id?id="+this.props.id; 
+   const url = "http://10.10.200.10:9000/restaurants/id?id="+localStorage.getItem("id"); 
    let headers = new Headers();
    console.log(url)
    
@@ -46,48 +46,48 @@ class NaviBar extends React.Component{
    }
  
   handleOverview() {
-    console.log(this.props.id)
+    console.log(localStorage.getItem("id"))
     let path=`Details`;
     
    this.props.history.push({
       pathname: path,
       state: {
-         id:this.props.id
+         id:localStorage.getItem("id")
       }
      });
   }
   handleMenu() {
-    console.log(this.props.id)
+    console.log(localStorage.getItem("id"))
     let path=`Menu`;
     
    this.props.history.push({
       pathname: path,
       state: {
-         id:this.props.id
+         id:localStorage.getItem("id")
       }
      });
   }
 
   handlePhotos() {
-    console.log(this.props.id)
+    console.log(localStorage.getItem("id"))
     let path=`Photo`;
     
    this.props.history.push({
       pathname: path,
       state: {
-         id:this.props.id
+         id:localStorage.getItem("id")
       }
      });
   }
 
   handleReview() {
-    console.log(this.props.id)
+    console.log(localStorage.getItem("id"))
     let path=`Review`;
     
    this.props.history.push({
       pathname: path,
       state: {
-         id:this.props.id
+         id:localStorage.getItem("id")
       }
      });
   }
@@ -145,7 +145,7 @@ class NaviBar extends React.Component{
     <li style={li}><a onClick={this.handleMenu} style={a}>Menu</a></li>
     <li style={li}><a onClick={this.handlePhotos} style={a}>Photos</a></li>
     <li style={li}><a onClick={this.handleReview} style={a}>Reviews</a></li>
-    <li style={li}><a onClick={this.handlefav} style={a}><Bookmark id={this.props.id}/></a></li>
+    <li style={li}><a onClick={this.handlefav} style={a}><Bookmark id={localStorage.getItem("id")}/></a></li>
     </ul>   
     </div>
     </>

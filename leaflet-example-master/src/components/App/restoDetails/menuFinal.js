@@ -13,12 +13,12 @@ class MenuFinal extends React.Component {
        
     constructor(props){
         super(props);
-        let id = this.props.location.state.id
+        let id = localStorage.getItem("id")
         this.state = {
-            id1 : this.props.location.state.id
+            id1 : localStorage.getItem("id")
          
         }
-        console.log(this.state.id1)
+        console.log(localStorage.getItem("id"))
       }
 
     render() {
@@ -26,7 +26,6 @@ class MenuFinal extends React.Component {
         return (
            
             <div>
-              console.log(this.state.id1)
               
                      {  
                      (localStorage.getItem("AccessToken")?(<Header1/>):(<Header/>))      
@@ -36,8 +35,8 @@ class MenuFinal extends React.Component {
                 <Search/> 
                 <br></br>
                 </div>
-                <div><NaviBar id={this.state.id1}/></div><br/>
-                <Menu id={this.state.id1}/>
+                <div><NaviBar id={localStorage.getItem("id")}/></div><br/>
+                <Menu id={localStorage.getItem("id")}/>
                 
             </div>
                 

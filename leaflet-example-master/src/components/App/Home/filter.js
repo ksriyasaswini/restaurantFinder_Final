@@ -108,23 +108,23 @@ unCheckIt(e) {
                 <legend>Cuisines </legend>
                 <FormGroup onChange = {this.handlecuisineChange} check>
                     <Label check>
-                        <Input type = "checkbox" name="cuisines" value="Italian" /> Italian 
+                        <Input type = "checkbox" name="cuisines" value="italian" /> Italian 
                     </Label>
                 <br></br>
                     <Label check>
-                        <Input type = "checkbox" name="cuisines" value="Thai" /> Thai
+                        <Input type = "checkbox" name="cuisines" value="thai" /> Thai
                     </Label>
                     <br></br>
                     <Label check>
-                        <Input type = "checkbox" name="cuisines" value="SouthIndian" /> SouthIndian
+                        <Input type = "checkbox" name="cuisines" value="south indian" /> SouthIndian
                     </Label>
                     <br></br>
                     <Label check>
-                        <Input type = "checkbox" name="cuisines" value="NorthIndian" /> NorthIndian
+                        <Input type = "checkbox" name="cuisines" value="north indian" /> NorthIndian
                     </Label>
                     <br></br>
                     <Label check>
-                        <Input type = "checkbox" name="cuisines" value="Chinese" /> Chinese
+                        <Input type = "checkbox" name="cuisines" value="chinese" /> Chinese
                     </Label>
                 </FormGroup>
                 <legend>Cost </legend>
@@ -153,12 +153,12 @@ unCheckIt(e) {
                 <legend>More Filters</legend>
                 <FormGroup onChange = {this.handleTypeChange} check>
                     <Label check>
-                    <Input type="radio" name="type" value="Veg Only" />{' '}
+                    <Input type="radio" name="type" value="veg only" />{' '}
                     Veg Only
                     </Label>
                     <br></br>
                     <Label check>
-                    <Input type="radio" name="type" value=" Veg/Non-Veg" />{' '}
+                    <Input type="radio" name="type" value="veg / non-veg" />{' '}
                     Veg / Non-Veg
                     </Label>
                 </FormGroup>

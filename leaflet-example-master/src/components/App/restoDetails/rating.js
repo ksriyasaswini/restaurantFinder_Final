@@ -23,7 +23,7 @@ export default class rating extends React.Component {
 
       componentDidMount() {
         //const url = "http://10.10.200.12:9000/foods"; 
-        const url = "http://10.10.200.10:9000/review/rating?rid="+this.props.id; 
+        const url = "http://10.10.200.10:9000/review/rating?rid="+localStorage.getItem("id"); 
         let headers = new Headers();
 
         headers.append('Content-Type', 'application/json');

@@ -13,9 +13,9 @@ class ReviewFinal extends React.Component {
        
     constructor(props){
         super(props);
-        let id = this.props.location.state.id
+        let id = localStorage.getItem("id")
         this.state = {
-            id1 : this.props.location.state.id
+            id1 : localStorage.getItem("id")
          
         }
         console.log(this.state.id1)
@@ -34,8 +34,8 @@ class ReviewFinal extends React.Component {
                 <Search/> 
                 <br></br>
                 </div>
-                <div><NaviBar id={this.state.id1}/></div><br/>
-                <Rating id={this.state.id1}/>
+                <div><NaviBar id={localStorage.getItem("id")}/></div><br/>
+                <Rating id={localStorage.getItem("id")}/>
                 <br/>
              
             </div>

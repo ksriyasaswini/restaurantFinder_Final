@@ -34,13 +34,9 @@ class Cards extends React.Component {
           );
           console.log(this.state.id)
           let path=`Details`;
+          localStorage.setItem("id",event.currentTarget.value)
           
-         this.props.history.push({
-            pathname: path,
-            state: {
-               id:event.currentTarget.value
-            }
-           });
+         this.props.history.push(path);
            
         }
 
