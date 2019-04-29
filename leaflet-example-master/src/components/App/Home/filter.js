@@ -88,8 +88,7 @@ unCheckIt(e) {
   
         cus[i++]=(e.target.value)
         console.log(cus)
-        // this.state.Cuisines[e.target.value]= !this.state.Cuisines[e.target.value];
-        // console.log("cuisines:"+e.target.value+"="+this.state.Cuisines[e.target.value])
+    
      }
 
      
@@ -131,25 +130,7 @@ unCheckIt(e) {
                                        
                     <Range range={rangeVal} updateRange={this.updateRange}/>
                    
-                   
-                {/* <FormGroup onChange = {this.handleCostChange}check>
-                    <Label check>
-                        <Input type = "checkbox"  name="cost" value="500-1000"/> 500-1000
-                    </Label>
-               <br></br>
-                    <Label check>
-                        <Input type = "checkbox" name="cost" value="300-500"/> 350-500
-                    </Label>
-                    <br></br>
-                    <Label check>
-                        <Input type = "checkbox" name="cost" value="250-350"/> 250-350
-                    </Label>
-                    <br></br>
-                    <Label check>
-                        <Input type = "checkbox" name="cost" value="<250"/> less than 250
-                    </Label>
-                </FormGroup> */}
-                                 
+                
                 <legend>More Filters</legend>
                 <FormGroup onChange = {this.handleTypeChange} check>
                     <Label check>
