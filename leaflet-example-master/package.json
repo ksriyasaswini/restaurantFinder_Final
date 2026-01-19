@@ -11,7 +11,7 @@
     "react-dom": "^16.8.6",
     "react-ionicons": "^3.0.1",
     "react-leaflet": "^2.2.1",
-    "react-scripts": "2.1.5",
+    "react-scripts": "5.0.1",
     "reactstrap": "^7.1.0"
   },
   "scripts": {
